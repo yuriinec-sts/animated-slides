@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground: #ededed;
+	}
+}
+
+body {
+	color: var(--foreground);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes slideAnimVertical {
+	from {
+		transform: translateY(0%);
+	}
+	to {
+		transform: translateY(-100%);
+	}
+}
+@keyframes slideAnimHorizontal {
+	from {
+		transform: translateX(0%);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+.looper {
+	width: 100%;
+	overflow: hidden;
+}
+.looper[orientation='vertical'] {
+	width: unset;
+	height: 100%;
+}
+
+.looper__innerList {
+	display: flex;
+	justify-content: center;
+	width: fit-content;
+}
+.looper__innerList[orientation='vertical'] {
+	flex-direction: column;
+}
+
+.looper__innerList[data-animate='true'][orientation='vertical']
+	.looper__listInstance {
+	animation: slideAnimVertical linear infinite;
+}
+.looper__innerList[data-animate='true'][orientation='horizontal']
+	.looper__listInstance {
+	animation: slideAnimHorizontal linear infinite;
+}
+
+.looper__listInstance {
+	display: flex;
+	width: max-content;
+
+	animation: none;
+}
+
+.looper__innerList {
+	display: flex;
+	/* Другие стили для списка */
+	animation: scrollAnimation var(--duration) linear infinite;
+}
+
+.looper__listInstance {
+	flex-shrink: 0;
+	/* Настройки элементов */
+}
+
+/* Анимация прокрутки */
+@keyframes scrollAnimation {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}

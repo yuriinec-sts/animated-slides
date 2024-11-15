@@ -164,7 +164,11 @@ const HorizontalScroll = ({ reversed = false, slides }) => {
 					return (
 						<div
 							key={index}
-							ref={el => (itemsRef.current[index] = el)}
+							ref={(el: HTMLDivElement | null) => {
+								if (el) {
+									itemsRef.current[index] = el
+								}
+							}}
 							className='box w-1/5 h-[250px] min-w-[250px]'>
 							<SliderCard
 								isFlipped={flippedIndex === index}

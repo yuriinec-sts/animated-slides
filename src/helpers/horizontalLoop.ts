@@ -1,5 +1,4 @@
 import gsap from 'gsap'
-import { isArray } from 'util'
 
 interface Config {
 	repeat?: number
